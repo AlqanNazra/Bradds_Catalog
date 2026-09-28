@@ -1,0 +1,32 @@
+.not-found {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  text-align: center;
+  padding: 90px var(--page-px) 40px;
+}
+
+.not-found__code {
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--color-red);
+  line-height: 1;
+}
+
+.not-found__title {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.not-found__text {
+  font-size: 14px;
+  color: var(--color-ink-70);
+  max-width: 420px;
+}
+
+.not-found__actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}

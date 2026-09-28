@@ -1,0 +1,21 @@
+.field__input-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.field__input-row .field__control {
+  flex: 1;
+  min-width: 0;
+}
+
+.field__input-row .btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.field textarea.field__control {
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.6;
+}

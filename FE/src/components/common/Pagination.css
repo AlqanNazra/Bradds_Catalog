@@ -1,0 +1,19 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 36px var(--page-px) 8px;
+}
+
+.pagination__status {
+  font-size: 13px;
+  color: var(--color-ink-70);
+}
+
+@media (max-width: 520px) {
+  .pagination {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}

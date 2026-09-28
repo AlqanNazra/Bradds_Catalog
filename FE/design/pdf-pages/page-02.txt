@@ -1,0 +1,31 @@
+Bradds
+Main Menu
+Dashboard
+Data Produk
+Edit Main Board
+Edit Data Laptop 
+Main Info
+Nama produk
+ABC
+Harga
+1234556
+Color
+Batal
+Simpan Perubahan
+Size
+S
+M
+L
+XL
+XXL
+Detail Info
+Details
+ABC
+Fitur
+1234556
+ 
+1234556
+Material
+ABC
+Admin User
+Administrator

@@ -1,0 +1,22 @@
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# Go build artifacts
+/bin/
+/dist/
+*.exe
+*.out
+
+# IDE
+.vscode/
+.idea/
+
+# Local uploaded media
+uploads/
+
+# OS
+.DS_Store
+Thumbs.db

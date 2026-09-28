@@ -1,0 +1,9 @@
+/* ProductListToolbar carries its own horizontal padding for public pages; inside the
+   admin shell the page padding already applies. */
+.admin-page .list-toolbar {
+  padding: 0 0 4px;
+}
+
+.admin-page .pagination {
+  padding-inline: 0;
+}

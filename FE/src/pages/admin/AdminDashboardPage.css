@@ -1,0 +1,60 @@
+.admin-page {
+  display: grid;
+  gap: 22px;
+}
+
+.admin-page__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.admin-page__title {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.admin-page__subtitle {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--admin-muted);
+  max-width: 620px;
+}
+
+.admin-dashboard__cards {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.admin-dashboard__summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  background: var(--admin-surface);
+  font-size: 13px;
+  color: var(--admin-muted);
+  box-shadow: var(--shadow-card);
+}
+
+.admin-dashboard__summary strong {
+  color: var(--admin-ink);
+}
+
+.admin-dashboard__section {
+  display: grid;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.admin-dashboard__section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}

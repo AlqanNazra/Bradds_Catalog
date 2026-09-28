@@ -1,0 +1,25 @@
+.catalog__body {
+  padding: 32px var(--page-px) 0;
+}
+
+.catalog__hero {
+  padding: 0 var(--page-px);
+}
+
+.catalog-breadcrumb {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 26px var(--page-px) 0;
+  font-size: 12px;
+  color: var(--color-ink-50);
+}
+
+.catalog-breadcrumb a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.catalog-breadcrumb a:hover {
+  color: var(--color-black);
+}

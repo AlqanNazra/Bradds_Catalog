@@ -1,0 +1,65 @@
+Bradds
+Main Menu
+Dashboard
+Data Produk
+Edit Main Board
+Admin User
+Administrator
+Ready
+17
+Belum Siap
+14
+Tidak dilanjut
+2
+Empty
+1
+Data Produk
+Filter
+Reset
+Cari nama pemohon, role, atau departemen...
+NO
+Nama Produk
+Katergori Produk
+Stock Produk
+STATUS
+ACTIONS
+Ready
+1
+AL
+Kaos
+12
+Kaos ABC
+Detail
+Empty
+7
+KA
+Kemeja Abc
+Kemeja
+0
+Detail
+Belum Siap
+8
+KA
+Toe Bag Abc
+toe Bag
+1
+Detail
+Menunggu
+9
+KA
+Sendal ABC
+Sendal
+1
+Detail
+Menunggu
+KA
+Sendal ABC
+10
+Sendal
+0
+Detail
+Tampilkan:
+10
+1
+2
+Menampilkan 1 - 10 dari 15 produk

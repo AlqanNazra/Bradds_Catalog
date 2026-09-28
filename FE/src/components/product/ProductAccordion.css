@@ -1,0 +1,45 @@
+.accordion {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.accordion__heading {
+  margin: 0;
+  font-size: inherit;
+}
+
+.accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 18px 4px;
+  border: 0;
+  border-bottom: 1px solid var(--color-border);
+  background: transparent;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.accordion__trigger:hover {
+  color: var(--color-red);
+}
+
+.accordion__icon {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.accordion__panel {
+  padding: 16px 4px 22px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-ink-70);
+  white-space: pre-line;
+}

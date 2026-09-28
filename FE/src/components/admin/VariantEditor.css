@@ -1,0 +1,72 @@
+.variant-editor {
+  display: grid;
+  gap: 16px;
+}
+
+.variant-editor__empty {
+  padding: 18px;
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--color-border);
+  background: var(--color-surface);
+  font-size: 13px;
+  color: var(--admin-muted);
+}
+
+.variant-editor__list {
+  display: grid;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.variant-editor__row {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--admin-surface);
+}
+
+.variant-editor__row-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.variant-editor__row-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.variant-editor__swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(14, 14, 14, 0.15);
+}
+
+.variant-editor__fields {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  align-items: end;
+}
+
+.variant-editor__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  padding-bottom: 12px;
+}
+
+.variant-editor > .btn {
+  justify-self: start;
+}

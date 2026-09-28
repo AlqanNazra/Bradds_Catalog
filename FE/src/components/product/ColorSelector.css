@@ -1,0 +1,38 @@
+.color-selector {
+  display: grid;
+  gap: 12px;
+}
+
+.color-selector__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-ink-70);
+}
+
+.color-selector__value {
+  color: var(--color-black);
+  font-weight: 700;
+}
+
+.color-selector__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.color-selector__swatch {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 1px solid rgba(14, 14, 14, 0.15);
+  border-radius: 50%;
+  cursor: pointer;
+  outline-offset: 3px;
+}
+
+.color-selector__swatch--active {
+  box-shadow: 0 0 0 2px var(--color-white), 0 0 0 4px var(--color-black);
+}

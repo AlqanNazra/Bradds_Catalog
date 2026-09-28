@@ -1,0 +1,12 @@
+.catalog-banner {
+  height: 220px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+@media (max-width: 700px) {
+  .catalog-banner {
+    height: 160px;
+  }
+}

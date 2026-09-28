@@ -1,0 +1,21 @@
+Bradds
+Main Menu
+Dashboard
+Data Produk
+Edit Main Board
+Edit Data Laptop 
+Main Info
+Nama produk
+Harga
+Batal
+Simpan Perubahan
+Color
+Size
++
+Detail Info
+Details
+Fitur
+ 
+Material
+Admin User
+Administrator

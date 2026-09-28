@@ -1,0 +1,91 @@
+.admin-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  background: var(--admin-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+
+.admin-table th {
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--admin-muted);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.admin-table td {
+  padding: 14px 18px;
+  font-size: 13px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.admin-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.admin-table__product {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 220px;
+}
+
+.admin-table__thumb {
+  display: block;
+  width: 52px;
+  height: 64px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--color-surface);
+  flex-shrink: 0;
+}
+
+.admin-table__product-text {
+  display: grid;
+  gap: 2px;
+}
+
+.admin-table__name {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.admin-table__name:hover {
+  color: var(--admin-blue);
+}
+
+.admin-table__slug,
+.admin-table__price {
+  font-size: 11px;
+  color: var(--admin-muted);
+}
+
+.admin-table__actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.admin-table__col--actions {
+  width: 220px;
+}
+
+@media (max-width: 900px) {
+  .admin-table__col--md {
+    display: none;
+  }
+
+  .admin-table {
+    min-width: 480px;
+  }
+}

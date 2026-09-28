@@ -1,0 +1,17 @@
+.admin-form-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.admin-form-head__back {
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--admin-muted);
+}
+
+.admin-form-head__back:hover {
+  color: var(--admin-ink);
+}

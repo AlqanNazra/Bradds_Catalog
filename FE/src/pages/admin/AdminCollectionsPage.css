@@ -1,0 +1,83 @@
+.admin-collections {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: minmax(320px, 420px) 1fr;
+  align-items: start;
+}
+
+.admin-collections__form {
+  display: grid;
+  gap: 18px;
+}
+
+.admin-collections__fields {
+  display: grid;
+  gap: 16px;
+}
+
+.admin-collections__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.admin-collections__list-wrap {
+  display: grid;
+  gap: 14px;
+}
+
+.admin-collections__list {
+  display: grid;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.admin-collections__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  background: var(--admin-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.admin-collections__info {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.admin-collections__name {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.admin-collections__slug,
+.admin-collections__meta {
+  font-size: 11px;
+  color: var(--admin-muted);
+}
+
+.admin-collections__item-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 960px) {
+  .admin-collections {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .admin-collections__item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
