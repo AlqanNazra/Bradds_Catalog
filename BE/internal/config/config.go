@@ -14,6 +14,8 @@ type Config struct {
 	AppEnv      string
 	AppPort     string
 	FrontendURL string
+	StorageDir string
+	StorageURL string
 
 	DBHost     string
 	DBPort     string
@@ -53,6 +55,8 @@ func Load() (*Config, error) {
 		DBSSLMode:  getEnv("DB_SSLMODE", "disable"),
 		DBMaxConns: maxConns,
 		DBMinConns: minConns,
+		StorageDir: getEnv("STORAGE_DIR", "./uploads"),
+		StorageURL: getEnv("STORAGE_URL","http://localhost:8080/uploads",),
 	}
 	if cfg.DBPassword == "" {
 		return nil, fmt.Errorf("DB_PASSWORD is required")
@@ -79,3 +83,4 @@ func getInt32(key string, fallback int32) (int32, error) {
 	}
 	return int32(parsed), nil
 }
+

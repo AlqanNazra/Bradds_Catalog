@@ -1,7 +1,7 @@
 import type {
   Color,
   Product,
-  ProductImage,
+  ProductMedia,
   ProductSort,
   ProductStatus,
   ProductVariant,
@@ -213,14 +213,14 @@ export function describeSelection(
 
 /* ── Images ────────────────────────────────────────────────────────────────── */
 
-export function sortedImages(product: Product): ProductImage[] {
-  return [...product.images].sort((a, b) => {
+export function sortedImages(product: Product): ProductMedia[] {
+  return [...product.media].sort((a, b) => {
     if (a.is_primary !== b.is_primary) return a.is_primary ? -1 : 1;
     return a.sort_order - b.sort_order;
   });
 }
 
-export function primaryImage(product: Product): ProductImage | null {
+export function primaryImage(product: Product): ProductMedia | null {
   return sortedImages(product)[0] ?? null;
 }
 

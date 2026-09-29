@@ -9,7 +9,7 @@ import type {
   Color,
   Product,
   ProductCollection,
-  ProductImage,
+  ProductMedia,
   ProductQuery,
   ProductSort,
   ProductStatus,
@@ -201,15 +201,19 @@ function buildVariant(productId: number, seed: VariantSeed, index: number): Prod
 }
 
 function buildProduct(seed: ProductSeed): Product {
-  const images: ProductImage[] = seed.images.map((imageSeed, index) => ({
-    id: seed.id * 10 + index + 1,
-    product_id: seed.id,
-    image_url: seedUrl(imageSeed),
-    alt_text: `${seed.name} — tampilan ${index + 1}`,
-    sort_order: index,
-    is_primary: index === 0,
-    created_at: CREATED_AT,
-  }));
+  const media: ProductMedia[] = seed.images.map(
+    (imageSeed, index) => ({
+      id: seed.id * 10 + index + 1,
+      product_id: seed.id,
+      media_id: seed.id * 100 + index + 1,
+      media_role: index === 0 ? 'cover' : 'gallery',
+      file_url: seedUrl(imageSeed),
+      alt_text: `${seed.name} — tampilan ${index + 1}`,
+      sort_order: index,
+      is_primary: index === 0,
+      created_at: CREATED_AT,
+    })
+  );
 
   return {
     id: seed.id,
@@ -223,9 +227,11 @@ function buildProduct(seed: ProductSeed): Product {
     status: seed.status,
     created_at: CREATED_AT,
     updated_at: UPDATED_AT,
-    category: CATEGORIES.find((category) => category.id === seed.categoryId) ?? null,
-    images,
-    variants: seed.variants.map((variant, index) => buildVariant(seed.id, variant, index)),
+    media,
+    variants: seed.variants.map(
+      (variant, index) =>
+        buildVariant(seed.id, variant, index)
+    ),
     collections: [],
   };
 }
@@ -755,15 +761,19 @@ export function deleteCollection(id: number): boolean {
 /* ── Product mutations ───────────────────────────────────────────────────── */
 
 function applyProductInput(productId: number, input: ProductInput): Product {
-  const images: ProductImage[] = input.images.map((image, index) => ({
-    id: image.id ?? productId * 10 + index + 1,
-    product_id: productId,
-    image_url: image.image_url,
-    alt_text: image.alt_text,
-    sort_order: image.sort_order,
-    is_primary: image.is_primary,
-    created_at: CREATED_AT,
-  }));
+  const media: ProductMedia[] = input.media.map(
+    (image, index) => ({
+      id: image.id ?? productId * 10 + index + 1,
+      product_id: productId,
+      media_id: image.media_id,
+      media_role: image.media_role,
+      file_url: image.file_url,
+      alt_text: image.alt_text,
+      sort_order: image.sort_order,
+      is_primary: image.is_primary,
+      created_at: CREATED_AT,
+    })
+  );
 
   const variants: ProductVariant[] = input.variants.map((variant, index) => {
     const color = findColor(variant.color_id);
@@ -796,8 +806,7 @@ function applyProductInput(productId: number, input: ProductInput): Product {
     status: input.status,
     created_at: CREATED_AT,
     updated_at: UPDATED_AT,
-    category: CATEGORIES.find((category) => category.id === input.category_id) ?? null,
-    images,
+    media,
     variants,
     collections: [],
   };

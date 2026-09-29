@@ -1,20 +1,6 @@
 import { ApiError, type ApiEnvelope, type Paginated } from '../types/api';
-
-/**
- * Thin fetch wrapper for the Go/Gin API.
- *
- * The backend answers with `{ "data": ... }` and `{ "error": "..." }` (see
- * ../go-gin-article/internal/handler). `vite.config.ts` proxies `/api` to :8080.
- */
-
 const BASE_URL = '/api';
-
-/**
- * Bearer token for the admin API. The session provider sets it on login; the real
- * Gin middleware then authenticates every `/api/admin/*` request.
- */
 let authToken: string | null = null;
-
 export function setAuthToken(token: string | null): void {
   authToken = token;
   if (typeof window === 'undefined') return;

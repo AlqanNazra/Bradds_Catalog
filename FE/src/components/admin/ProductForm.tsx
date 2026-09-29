@@ -30,7 +30,7 @@ function toFormState(product: Product | null): ProductInput {
       material: '',
       care_instruction: '',
       status: 'not_ready',
-      images: [],
+      media: [],
       variants: [],
       collection_ids: [],
     };
@@ -45,13 +45,21 @@ function toFormState(product: Product | null): ProductInput {
     material: product.material,
     care_instruction: product.care_instruction,
     status: product.status,
-    images: product.images.map((image) => ({
-      id: image.id,
-      image_url: image.image_url,
-      alt_text: image.alt_text,
-      sort_order: image.sort_order,
-      is_primary: image.is_primary,
-    })),
+    media: (product.media ?? [])
+      .filter(
+        (image) =>
+          image.media_role === 'cover' ||
+          image.media_role === 'gallery'
+      )
+      .map((image) => ({
+        id: image.id,
+        media_id: image.media_id,
+        media_role: image.media_role as 'cover' | 'gallery',
+        file_url: image.file_url,
+        alt_text: image.alt_text,
+        sort_order: image.sort_order,
+        is_primary: image.is_primary,
+      })),
     variants: product.variants.map((variant) => ({
       id: variant.id,
       color_id: variant.color_id,
@@ -61,15 +69,11 @@ function toFormState(product: Product | null): ProductInput {
       price: variant.price,
       is_active: variant.is_active,
     })),
-    collection_ids: product.collections.map((collection) => collection.id),
+    collection_ids: product.collections.map(
+      (collection) => collection.id
+    ),
   };
 }
-
-/**
- * Shared create/edit form for `/admin/products/new` and `/admin/products/:id/edit`.
- * Submits the full aggregate (product + images + variants + collections), matching the
- * `ProductInput` payload the API expects.
- */
 export function ProductForm({
   product,
   reference,
@@ -215,9 +219,9 @@ export function ProductForm({
       <section className="card product-form__section">
         <h2 className="panel-title">Gambar produk</h2>
         <ImageUploader
-          images={form.images}
-          error={errors.images}
-          onChange={(images) => patch({ images })}
+          images={form.media}
+          error={errors.media}
+          onChange={(media) => patch({ media })}
         />
       </section>
 

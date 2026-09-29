@@ -205,16 +205,20 @@ export function deleteCollection(id: number): Promise<void> {
  * forms keep in state. Until the endpoint exists, a local object URL is returned so
  * the picker can still preview the selected file.
  */
-export async function uploadImage(file: File): Promise<UploadResponse> {
+/* ── Image upload ───────────────────────────────────────────────────── */
+export async function uploadImage(
+  file: File
+): Promise<UploadResponse> {
   const body = new FormData();
   body.append('file', file);
 
-  try {
-    return await request<UploadResponse>('/admin/uploads', { method: 'POST', body });
-  } catch (error) {
-    console.warn('[bradds] upload endpoint unavailable — previewing the file locally.', error);
-    return { image_url: URL.createObjectURL(file) };
-  }
+  return request<UploadResponse>(
+    '/admin/media',
+    {
+      method: 'POST',
+      body,
+    }
+  );
 }
 
 /* ── Session ─────────────────────────────────────────────────────────────── */

@@ -1,4 +1,4 @@
-import { useRef, useState, type FormEvent } from 'react';
+import { useRef, useState} from 'react';
 import { uploadImage } from '../../services/adminApi';
 import type { ProductImageInput } from '../../types/admin';
 import { toErrorMessage } from '../../types/api';
@@ -20,57 +20,75 @@ export function ImageUploader({ images, onChange, max = 8, error }: ImageUploade
   const inputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
-  const [urlValue, setUrlValue] = useState('');
 
   /** Keeps `sort_order` contiguous and guarantees exactly one primary image. */
   function normalize(items: ProductImageInput[]): ProductImageInput[] {
-    const hasPrimary = items.some((image) => image.is_primary);
-    return items.map((image, index) => ({
+  const primaryIndex = items.findIndex(
+    (image) => image.is_primary
+  );
+
+  return items.map((image, index) => {
+    const isPrimary =
+      primaryIndex >= 0
+        ? index === primaryIndex
+        : index === 0;
+
+    return {
       ...image,
       sort_order: index,
-      is_primary: hasPrimary ? image.is_primary : index === 0,
-    }));
-  }
+      is_primary: isPrimary,
+      media_role: isPrimary ? 'cover' : 'gallery',
+    };
+  });
+}
 
   async function handleFiles(files: FileList | null) {
-    if (!files || files.length === 0) return;
+  if (!files || files.length === 0) return;
 
-    const selected = Array.from(files).slice(0, Math.max(max - images.length, 0));
-    if (selected.length === 0) {
-      setUploadError(`Maksimal ${max} gambar per produk.`);
-      return;
-    }
+  const selected = Array.from(files).slice(
+    0,
+    Math.max(max - images.length, 0)
+  );
 
-    setUploading(true);
-    setUploadError(null);
-    try {
-      const uploaded: ProductImageInput[] = [];
-      for (const file of selected) {
-        const { image_url } = await uploadImage(file);
-        uploaded.push({ image_url, alt_text: file.name, sort_order: 0, is_primary: false });
-      }
-      onChange(normalize([...images, ...uploaded]));
-    } catch (reason: unknown) {
-      setUploadError(toErrorMessage(reason, 'Gagal mengunggah gambar.'));
-    } finally {
-      setUploading(false);
-      if (inputRef.current) inputRef.current.value = '';
-    }
+  if (selected.length === 0) {
+    setUploadError(`Maksimal ${max} gambar per produk.`);
+    return;
   }
 
-  function addFromUrl(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const value = urlValue.trim();
-    if (!value) return;
-    const added: ProductImageInput = {
-      image_url: value,
-      alt_text: '',
-      sort_order: 0,
-      is_primary: false,
-    };
-    onChange(normalize([...images, added]));
-    setUrlValue('');
+  setUploading(true);
+  setUploadError(null);
+
+  try {
+    const uploadedImages: ProductImageInput[] = [];
+
+    for (const file of selected) {
+      const uploaded = await uploadImage(file);
+
+      const newImage: ProductImageInput = {
+        media_id: uploaded.id,
+        media_role: 'gallery',
+        file_url: uploaded.file_url,
+        alt_text: file.name,
+        sort_order: images.length + uploadedImages.length,
+        is_primary: images.length === 0 && uploadedImages.length === 0,
+      };
+
+      uploadedImages.push(newImage);
+    }
+
+    onChange(normalize([...images, ...uploadedImages]));
+  } catch (reason: unknown) {
+    setUploadError(
+      toErrorMessage(reason, 'Gagal mengunggah gambar.')
+    );
+  } finally {
+    setUploading(false);
+
+    if (inputRef.current) {
+      inputRef.current.value = '';
+    }
   }
+}
 
   function move(index: number, direction: -1 | 1) {
     const target = index + direction;
@@ -110,23 +128,6 @@ export function ImageUploader({ images, onChange, max = 8, error }: ImageUploade
           />
           {uploading ? 'Mengunggah…' : 'Unggah gambar'}
         </label>
-
-        <form className="image-uploader__url" onSubmit={addFromUrl}>
-          <label className="sr-only" htmlFor="image-url">
-            Tambah gambar dari URL
-          </label>
-          <input
-            id="image-url"
-            className="field__control"
-            type="url"
-            value={urlValue}
-            placeholder="https://… atau /uploads/gambar.jpg"
-            onChange={(event) => setUrlValue(event.target.value)}
-          />
-          <button type="submit" className="btn btn--outline btn--sm">
-            Tambah URL
-          </button>
-        </form>
       </div>
 
       <p className="field__hint">
@@ -148,7 +149,7 @@ export function ImageUploader({ images, onChange, max = 8, error }: ImageUploade
           {images.map((image, index) => (
             <li key={`${image.id ?? 'new'}-${index}`} className="image-uploader__item">
               <span className="image-uploader__thumb">
-                <SmartImage src={image.image_url} alt={image.alt_text || `Gambar ${index + 1}`} />
+                <SmartImage src={image.file_url} alt={image.alt_text || `Gambar ${index + 1}`} />
                 {image.is_primary && <span className="image-uploader__primary">Utama</span>}
               </span>
 

@@ -32,7 +32,7 @@ export interface ProductFormErrors {
   description?: string;
   material?: string;
   care_instruction?: string;
-  images?: string;
+  media?: string;
   variants?: string;
   variantErrors?: (VariantFormErrors | null)[];
 }
@@ -114,8 +114,8 @@ export function validateProductForm(input: ProductInput): ProductFormErrors {
 
   if (!input.material.trim()) errors.material = 'Material wajib diisi.';
 
-  if (input.images.length === 0) {
-    errors.images = 'Tambahkan minimal satu gambar produk.';
+  if (input.media.length === 0) {
+    errors.media = 'Tambahkan minimal satu gambar produk.';
   }
 
   const variantErrors: (VariantFormErrors | null)[] = [];

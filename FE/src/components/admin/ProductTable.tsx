@@ -53,7 +53,7 @@ export function ProductTable({ products, onDelete, deletingId }: ProductTablePro
                 <td>
                   <div className="admin-table__product">
                     <span className="admin-table__thumb">
-                      <SmartImage src={image?.image_url} alt={image?.alt_text || product.name} />
+                      <SmartImage src={image?.file_url} alt={image?.alt_text || product.name} />
                     </span>
                     <span className="admin-table__product-text">
                       <Link to={`/admin/products/${product.id}/edit`} className="admin-table__name">
@@ -64,7 +64,7 @@ export function ProductTable({ products, onDelete, deletingId }: ProductTablePro
                     </span>
                   </div>
                 </td>
-                <td>{product.category?.name ?? '—'}</td>
+                <td>{product.category_id?? '—'}</td>
                 <td className="admin-table__col--md">{variantCount}</td>
                 <td className="admin-table__col--md">{formatNumber(totalStock(product))}</td>
                 <td>

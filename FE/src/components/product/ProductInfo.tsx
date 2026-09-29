@@ -74,9 +74,9 @@ export function ProductInfo({
   return (
     <div className="product-info">
       <div className="product-info__meta">
-        {product.category && (
-          <Link to={`/categories/${product.category.slug}`} className="product-info__category">
-            {product.category.name}
+        {product.category_id && (
+          <Link to={`/categories/${product.category_id}`} className="product-info__category">
+            {product.category_id}
           </Link>
         )}
         <StatusPill

@@ -24,7 +24,9 @@ export interface ProductVariantInput {
 
 export interface ProductImageInput {
   id?: number;
-  image_url: string;
+  media_id: number;
+  media_role: 'cover' | 'gallery';
+  file_url: string;
   alt_text: string;
   sort_order: number;
   is_primary: boolean;
@@ -39,7 +41,7 @@ export interface ProductInput {
   material: string;
   care_instruction: string;
   status: ProductStatus;
-  images: ProductImageInput[];
+  media: ProductImageInput[];
   variants: ProductVariantInput[];
   collection_ids: number[];
 }
@@ -66,7 +68,17 @@ export interface CollectionInput {
 
 /** Response of the upload endpoint — the backend stores the binary and returns a URL. */
 export interface UploadResponse {
-  image_url: string;
+  id: number;
+  file_url: string;
+  storage_provider: string;
+  storage_key: string;
+  media_type: string;
+  mime_type: string;
+  original_filename: string;
+  file_size_bytes: number;
+  width: number | null;
+  height: number | null;
+  status: string;
 }
 
 /** Reference data required by the admin product form. */

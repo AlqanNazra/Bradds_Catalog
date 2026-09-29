@@ -37,15 +37,19 @@ export interface Size {
   updated_at: string;
 }
 
-export interface ProductImage {
+export interface ProductMedia {
   id: number;
   product_id: number;
-  image_url: string;
+  media_id: number;
+  media_role: 'cover' | 'gallery' | 'video';
+  file_url: string;
   alt_text: string;
   sort_order: number;
   is_primary: boolean;
-  created_at: string;
+  created_at?: string;
 }
+
+
 
 export interface ProductVariant {
   id: number;
@@ -89,12 +93,11 @@ export interface Product {
   material: string;
   care_instruction: string;
   status: ProductStatus;
-  created_at: string;
-  updated_at: string;
-  category: Category | null;
-  images: ProductImage[];
+  media: ProductMedia[];
   variants: ProductVariant[];
   collections: Collection[];
+  created_at: string;
+  updated_at: string;
 }
 
 export interface Banner {

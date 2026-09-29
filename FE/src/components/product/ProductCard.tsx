@@ -35,7 +35,7 @@ export function ProductCard({ product, showStock = false, showStatus = false }: 
     <article className="product-card">
       <Link to={`/products/${product.slug}`} className="product-card__media">
         <SmartImage
-          src={image?.image_url}
+          src={image?.file_url}
           alt={image?.alt_text || product.name}
           placeholderLabel="Foto produk"
         />
@@ -43,7 +43,7 @@ export function ProductCard({ product, showStock = false, showStatus = false }: 
       </Link>
 
       <div className="product-card__body">
-        <p className="product-card__category">{product.category?.name ?? 'Tanpa kategori'}</p>
+        <p className="product-card__category">{product.category_id ?? 'Tanpa kategori'}</p>
         <h3 className="product-card__title">
           <Link to={`/products/${product.slug}`} className="product-card__title-link">
             {product.name}

@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import type { ProductImage } from '../../types/catalog';
+import type { ProductMedia } from '../../types/catalog';
 import { SmartImage } from '../common/SmartImage';
 import './ProductGallery.css';
 
 interface ProductGalleryProps {
-  images: ProductImage[];
+  images: ProductMedia[];
   productName: string;
 }
 
@@ -22,7 +22,7 @@ export function ProductGallery({ images, productName }: ProductGalleryProps) {
     <div className="product-gallery">
       <div className="product-gallery__stage">
         <SmartImage
-          src={active?.image_url}
+          src={active?.file_url}
           alt={active?.alt_text || productName}
           eager
           placeholderLabel="Foto produk"
@@ -42,7 +42,7 @@ export function ProductGallery({ images, productName }: ProductGalleryProps) {
                 aria-current={image.id === active?.id}
                 onClick={() => setSelectedId(image.id)}
               >
-                <SmartImage src={image.image_url} alt={image.alt_text || productName} />
+                <SmartImage src={image.file_url} alt={image.alt_text || productName} />
               </button>
             </li>
           ))}
